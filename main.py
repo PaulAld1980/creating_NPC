@@ -1,12 +1,10 @@
-import file_operations
-import random
 import os
+import random
 from faker import Faker
+import file_operations
 
 
-fake = Faker('ru_RU')
-
-dir_name = 'cards'
+CHARSHEET_DIR = 'cards'
 
 char_map = {
     'а': 'а͠',
@@ -89,10 +87,11 @@ skills = [
     'Огненный заряд',
     ]
 
+fake = Faker('ru_RU')
+
 
 def create_directory():
-    if not os.path.exists(dir_name):
-        os.makedirs(dir_name)
+    os.makedirs(CHARSHEET_DIR, exist_ok=True)
 
 
 def saving_card():
@@ -121,7 +120,7 @@ def saving_card():
             'skill_3': skill[2],
         }
 
-        file_operations.render_template('charsheet.svg', f'cards/result{i}.svg', context)
+        file_operations.render_template('charsheet.svg', f'{CHARSHEET_DIR}/result{i}.svg', context)
 
 
 def main():
