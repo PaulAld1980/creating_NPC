@@ -6,7 +6,7 @@ import file_operations
 
 CHARSHEET_DIR = 'cards'
 
-char_map = {
+CHAR_MAP = {
     'а': 'а͠',
     'б': 'б̋',
     'в': 'в͒͠',
@@ -75,8 +75,7 @@ char_map = {
     'Я': 'Я̋',
     ' ': ' ',
 }
-
-skills = [
+SKILLS = [
     'Стремительный прыжок',
     'Электрический выстрел',
     'Ледяной удар',
@@ -86,8 +85,7 @@ skills = [
     'Ледяной выстрел',
     'Огненный заряд',
     ]
-
-fake = Faker('ru_RU')
+FAKE = Faker('ru_RU')
 
 
 def create_directory():
@@ -97,19 +95,19 @@ def create_directory():
 def saving_card():
     for i in range(1, 11):
         elven_skills = []
-        for word in skills:
+        for word in SKILLS:
             for char in word:
-                word = word.replace(char, char_map[char])
+                word = word.replace(char, CHAR_MAP[char])
                 elven_word = word
             elven_skills.append(elven_word)
 
         skill = random.sample(elven_skills, 3)
 
         context = {
-            'first_name': fake.first_name(),
-            'last_name': fake.last_name(),
-            'town': fake.city(),
-            'job': fake.job(),
+            'first_name': FAKE.first_name(),
+            'last_name': FAKE.last_name(),
+            'town': FAKE.city(),
+            'job': FAKE.job(),
             'strength': random.randint(3, 18),
             'agility': random.randint(3, 18),
             'endurance': random.randint(3, 18),
